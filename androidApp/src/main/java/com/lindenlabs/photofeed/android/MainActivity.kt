@@ -3,17 +3,22 @@ package com.lindenlabs.photofeed.android
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.viewModels
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.material3.Text
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.lindenlabs.photofeed.android.screens.search.presentation.SearchScreen
-import com.lindenlabs.photofeed.android.screens.search.presentation.SearchViewModel
+import androidx.navigation.NavType
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
+import com.lindenlabs.photofeed.android.screens.detail.DetailScreen
+import com.lindenlabs.photofeed.android.screens.main.MainScreen
+import com.lindenlabs.photofeed.android.screens.main.search.presentation.SearchViewModel
+import com.lindenlabs.photofeed.android.ui.components.TopBar
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -23,12 +28,11 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         setContent {
-            MyApplicationTheme {
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    SearchScreen(viewModel = hiltViewModel())
+            Scaffold(
+                topBar = { TopBar() },
+            ) { padding -> // We need to pass scaffold's inner padding to content. That's why we use Box.
+                Box(modifier = Modifier.padding(padding)) {
+                    Navigation(viewModel = hiltViewModel())
                 }
             }
         }
@@ -36,8 +40,21 @@ class MainActivity : ComponentActivity() {
 }
 
 @Composable
-fun GreetingView(text: String) {
-    Text(text = text)
+fun Navigation(viewModel: SearchViewModel) {
+    val navController = rememberNavController()
+    NavHost(navController = navController, startDestination = "main") {
+        composable("main") {
+            MainScreen(navController = navController, viewModel)
+        }
+        composable(
+            "detail/{imageId}",
+            arguments = listOf(navArgument("imageId") { type = NavType.StringType })
+        ) { backStackEntry ->
+            backStackEntry.arguments?.getString("imageId")?.let { imageId ->
+                DetailScreen(imageId = imageId)
+            }
+        }
+    }
 }
 
 @Preview

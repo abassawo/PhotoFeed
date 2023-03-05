@@ -1,10 +1,10 @@
-package com.lindenlabs.photofeed.android.screens.search.presentation
+package com.lindenlabs.photofeed.android.screens.main.search.presentation
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lindenlabs.photofeed.android.screens.search.domain.SearchScreenInteractor
-import com.lindenlabs.photofeed.android.screens.search.presentation.SearchScreenContract.ViewState
+import com.lindenlabs.photofeed.android.screens.main.search.domain.SearchScreenInteractor
+import com.lindenlabs.photofeed.android.screens.main.search.presentation.SearchScreenContract.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -28,7 +28,10 @@ class SearchViewModel @Inject constructor(
             viewModelScope.launch(ioScope.coroutineContext) {
                 runCatching { getSearchScreenUi(query) }
                     .mapCatching { viewMapper.map(it) }
-                    .onSuccess { viewState.value = ViewState.Initial(query, it, true) }
+                    .onSuccess {
+                        Log.e("SVM", "Testing success $it")
+
+                        viewState.value = ViewState.Initial(query, results = it, true) }
                     .onFailure {
                         Log.e("SVM", "Testing failed $it")
                     }
