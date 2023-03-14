@@ -45,6 +45,7 @@ android {
 }
 
 dependencies {
+    implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     val composeVersion = "1.3.1"
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling:$composeVersion")
@@ -59,8 +60,11 @@ dependencies {
     implementation("com.squareup.okhttp3:logging-interceptor:3.9.0")
     implementation("com.squareup.retrofit2:retrofit:2.1.0")
     implementation("com.squareup.retrofit2:converter-gson:2.1.0")
+    implementation("io.coil-kt:coil-compose:2.2.2")
     implementation("com.google.accompanist:accompanist-systemuicontroller:0.24.6-alpha")
-    implementation("com.github.bumptech.glide:compose:1.0.0-alpha.1")
+    val glide = "4.11.0"
+    implementation("com.github.bumptech.glide:glide:$glide")
+    kapt("com.github.bumptech.glide:compiler:$glide")
     implementation(Libs.Hilt.base)
     annotationProcessor(Libs.Hilt.compiler)
     implementation(Libs.retrofit)

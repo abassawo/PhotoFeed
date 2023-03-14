@@ -20,24 +20,20 @@ class NetworkModule {
 
     @Provides
     fun provideRetrofit(): Retrofit {
-        val logging = HttpLoggingInterceptor()
-        logging.level = HttpLoggingInterceptor.Level.BASIC;
 
         val client = OkHttpClient.Builder()
-            .addInterceptor(logging)
             .build()
 
         return Retrofit.Builder()
             .client(client)
             .baseUrl(ImageService.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
-//            .addConverterFactory(Converter
             .build()
     }
 
     @Provides
     fun provideAppDataSource(retrofit: Retrofit): AppDataSource =
-        LocalDataSource()
-//        AppRepository(retrofit.create())
+//        LocalDataSource()
+        AppRepository(retrofit.create())
 
 }

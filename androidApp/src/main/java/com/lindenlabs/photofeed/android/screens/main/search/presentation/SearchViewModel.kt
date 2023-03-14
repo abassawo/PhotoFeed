@@ -16,12 +16,14 @@ import javax.inject.Inject
 @HiltViewModel
 class SearchViewModel @Inject constructor(
     val getSearchScreenUi: SearchScreenInteractor,
-    val viewMapper: SearchViewMapper
+    private val viewMapper: SearchViewMapper
 ) : ViewModel() {
     private val job = SupervisorJob()
     private val ioScope = CoroutineScope(Dispatchers.IO + job)
     val viewState =
         MutableStateFlow<ViewState>(ViewState.Initial(""))
+    val query: String
+        get() = (viewState as? ViewState.Initial)?.query ?: ""
 
     fun search(query: String) {
         if (query.isNotEmpty()) {
@@ -30,19 +32,12 @@ class SearchViewModel @Inject constructor(
                     .mapCatching { viewMapper.map(it) }
                     .onSuccess {
                         Log.e("SVM", "Testing success $it")
-
                         viewState.value = ViewState.Initial(query, results = it, true) }
                     .onFailure {
                         Log.e("SVM", "Testing failed $it")
                     }
             }
         }
-    }
-
-    fun onToggleSearch() {
-        val initialState =
-            (viewState.value as? ViewState.Initial) ?: ViewState.Initial()
-        viewState.value = initialState.copy(isSearchActive = initialState.isSearchActive.not())
     }
 
     fun updateQuery(query: String) {
