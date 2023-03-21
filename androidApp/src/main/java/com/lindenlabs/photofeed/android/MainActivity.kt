@@ -5,24 +5,20 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.material3.Icon
-import androidx.compose.material3.NavigationBar
-import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.hilt.navigation.compose.hiltViewModel
-import androidx.navigation.NavHostController
 import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.lindenlabs.photofeed.android.screens.detail.DetailScreen
-import com.lindenlabs.photofeed.android.screens.main.MainScreen
-import com.lindenlabs.photofeed.android.screens.main.search.presentation.SearchViewModel
+import com.lindenlabs.photofeed.android.screens.feed.FeedScreen
+import com.lindenlabs.photofeed.android.screens.search.presentation.views.SearchScaffold
+import com.lindenlabs.photofeed.android.screens.search.presentation.SearchViewModel
+import com.lindenlabs.photofeed.android.ui.components.BottomNavigation
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -42,10 +38,10 @@ class MainActivity : ComponentActivity() {
                 val viewModel: SearchViewModel = hiltViewModel()
                 NavHost(navController = navController, startDestination = "saved") {
                     composable("saved") {
-                        MainScreen(navController = navController, viewModel)
+                        FeedScreen(navController = navController)
                     }
                     composable("search") {
-                        MainScreen(navController = navController, viewModel)
+                        SearchScaffold(navController = navController, viewModel)
                     }
                     composable(
                         "detail/{imageId}",
@@ -61,31 +57,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-
-@Composable
-private fun BottomNavigation(
-    navController: NavHostController
-) {
-    NavigationBar {
-        val navBackStackEntry by navController.currentBackStackEntryAsState()
-        val currentRoute = navBackStackEntry?.destination?.route ?: "saved"
-
-        bottomNavigationItems.forEach { item ->
-            NavigationBarItem(
-                icon = {
-                    Icon(
-                        item.icon,
-                        contentDescription = item.iconContentDescription
-                    )
-                },
-                selected = currentRoute == item.route,
-                onClick = {
-                    navController.navigate(item.route)
-                }
-            )
-        }
-    }
-}
 
 
 @Preview

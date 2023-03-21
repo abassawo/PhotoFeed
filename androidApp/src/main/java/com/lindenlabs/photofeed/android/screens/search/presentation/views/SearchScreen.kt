@@ -1,4 +1,4 @@
-package com.lindenlabs.photofeed.android.screens.main.search.presentation
+package com.lindenlabs.photofeed.android.screens.search.presentation.views
 
 import android.util.Log
 import androidx.compose.animation.AnimatedVisibility
@@ -19,10 +19,11 @@ import androidx.compose.ui.platform.LocalSoftwareKeyboardController
 import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import com.google.accompanist.systemuicontroller.rememberSystemUiController
-import com.lindenlabs.photofeed.android.screens.main.search.presentation.views.ResultPage
+import com.lindenlabs.photofeed.android.screens.search.presentation.SearchScreenContract
+import com.lindenlabs.photofeed.android.screens.search.presentation.SearchViewModel
 
 @Composable
-fun SearchScreen(viewModel: SearchViewModel, navController: NavController) {
+internal fun SearchScreen(viewModel: SearchViewModel, navController: NavController) {
 
     Scaffold { padding ->
         Column(
@@ -46,7 +47,7 @@ fun SearchScreen(viewModel: SearchViewModel, navController: NavController) {
 
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalComposeUiApi::class)
 @Composable
-fun InitialViewState(viewModel: SearchViewModel, navController: NavController) {
+internal fun InitialViewState(viewModel: SearchViewModel, navController: NavController) {
     rememberSystemUiController().apply {
         setSystemBarsColor(
             color = Color.Transparent

@@ -1,10 +1,10 @@
-package com.lindenlabs.photofeed.android.screens.main.search.presentation
+package com.lindenlabs.photofeed.android.screens.search.presentation
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lindenlabs.photofeed.android.screens.main.search.domain.SearchScreenInteractor
-import com.lindenlabs.photofeed.android.screens.main.search.presentation.SearchScreenContract.ViewState
+import com.lindenlabs.photofeed.android.screens.search.domain.SearchScreenInteractor
+import com.lindenlabs.photofeed.android.screens.search.presentation.SearchScreenContract.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SearchViewModel @Inject constructor(
+internal class SearchViewModel @Inject constructor(
     val getSearchScreenUi: SearchScreenInteractor,
     private val viewMapper: SearchViewMapper
 ) : ViewModel() {
@@ -22,8 +22,6 @@ class SearchViewModel @Inject constructor(
     private val ioScope = CoroutineScope(Dispatchers.IO + job)
     val viewState =
         MutableStateFlow<ViewState>(ViewState.Initial(""))
-    val query: String
-        get() = (viewState as? ViewState.Initial)?.query ?: ""
 
     fun search(query: String) {
         if (query.isNotEmpty()) {

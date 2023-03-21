@@ -1,6 +1,6 @@
-package com.lindenlabs.photofeed.android.screens.main.search.presentation
+package com.lindenlabs.photofeed.android.screens.search.presentation
 
-import com.lindenlabs.photofeed.android.screens.main.search.presentation.entities.ImageResultViewEntity
+import com.lindenlabs.photofeed.android.screens.search.presentation.entities.ImageResultViewEntity
 
 object SearchScreenContract {
 

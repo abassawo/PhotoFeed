@@ -1,4 +1,4 @@
-package com.lindenlabs.photofeed.android.screens.main.search.domain
+package com.lindenlabs.photofeed.android.screens.search.domain
 
 import com.lindenlabs.photofeed.android.data.RawPhotoItem
 
