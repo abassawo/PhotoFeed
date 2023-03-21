@@ -14,7 +14,7 @@ interface ImageService{
         @Query("method") method: String = "flickr.photos.search",
         @Query("api_key") api_key: String = "1508443e49213ff84d566777dc211f2a",
         @Query("format") format: String = "json",
-        @Query("perpages") perpages: Int = 25,
+        @Query("perpages") perpages: Int = 100,
         @Query("nojsoncallback") nojsoncallback: String = "1",
         @Query("text") text: String
     ): RawResponseEntity

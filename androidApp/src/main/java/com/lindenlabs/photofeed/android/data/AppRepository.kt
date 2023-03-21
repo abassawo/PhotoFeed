@@ -14,6 +14,7 @@ class AppRepository @Inject constructor(private val imageService: ImageService) 
     override suspend fun getImages(query: String): List<RawPhotoItem> {
         val results = imageService.search(text = query).photos
         Log.d("SVM", "Results $results")
-        return results.photo.take(27)
+        return results.photo
+//            .take(27)
     }
 }
