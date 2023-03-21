@@ -15,7 +15,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
 import com.lindenlabs.photofeed.android.screens.detail.DetailScreen
-import com.lindenlabs.photofeed.android.screens.feed.FeedScreen
+import com.lindenlabs.photofeed.android.screens.feed.presentation.views.FeedScaffold
 import com.lindenlabs.photofeed.android.screens.search.presentation.views.SearchScaffold
 import com.lindenlabs.photofeed.android.screens.search.presentation.SearchViewModel
 import com.lindenlabs.photofeed.android.ui.components.BottomNavigation
@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
                 val viewModel: SearchViewModel = hiltViewModel()
                 NavHost(navController = navController, startDestination = "saved") {
                     composable("saved") {
-                        FeedScreen(navController = navController)
+                        FeedScaffold(navController = navController)
                     }
                     composable("search") {
                         SearchScaffold(navController = navController, viewModel)

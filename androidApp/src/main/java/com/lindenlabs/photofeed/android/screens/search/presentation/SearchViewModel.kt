@@ -20,8 +20,8 @@ internal class SearchViewModel @Inject constructor(
 ) : ViewModel() {
     private val job = SupervisorJob()
     private val ioScope = CoroutineScope(Dispatchers.IO + job)
-    val viewState =
-        MutableStateFlow<ViewState>(ViewState.Initial(""))
+    private val mutableViewState = MutableStateFlow<ViewState>(ViewState.Initial(""))
+    val viewState = mutableViewState
 
     fun search(query: String) {
         if (query.isNotEmpty()) {
@@ -30,7 +30,7 @@ internal class SearchViewModel @Inject constructor(
                     .mapCatching { viewMapper.map(it) }
                     .onSuccess {
                         Log.e("SVM", "Testing success $it")
-                        viewState.value = ViewState.Initial(query, results = it, true) }
+                        mutableViewState.value = ViewState.Initial(query, results = it, true) }
                     .onFailure {
                         Log.e("SVM", "Testing failed $it")
                     }
@@ -39,6 +39,6 @@ internal class SearchViewModel @Inject constructor(
     }
 
     fun updateQuery(query: String) {
-        viewState.value = (viewState.value as ViewState.Initial).copy(query = query)
+        mutableViewState.value = (mutableViewState.value as ViewState.Initial).copy(query = query)
     }
 }

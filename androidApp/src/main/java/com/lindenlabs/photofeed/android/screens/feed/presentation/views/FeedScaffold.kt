@@ -10,13 +10,14 @@ import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.lindenlabs.photofeed.android.screens.feed.FeedScreen
 import com.lindenlabs.photofeed.android.screens.feed.presentation.FeedViewModel
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-internal fun FeedScaffold(navController: NavHostController, viewModel: FeedViewModel) {
+internal fun FeedScaffold(navController: NavHostController, viewModel: FeedViewModel = hiltViewModel()) {
     Scaffold(
         topBar = {
             CenterAlignedTopAppBar(
