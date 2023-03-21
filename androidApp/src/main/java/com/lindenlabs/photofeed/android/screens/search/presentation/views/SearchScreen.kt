@@ -87,7 +87,7 @@ internal fun InitialViewState(viewModel: SearchViewModel, navController: NavCont
                         .padding(16.dp),
                     enabled = true
                 ) {
-                    ResultPage(initialState.results, navController)
+                    VerticalResults(initialState.results, navController)
                 }
                 AnimatedVisibility(
                     visible = true,

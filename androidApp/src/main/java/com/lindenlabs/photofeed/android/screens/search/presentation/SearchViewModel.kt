@@ -3,6 +3,7 @@ package com.lindenlabs.photofeed.android.screens.search.presentation
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.lindenlabs.photofeed.android.screens.search.domain.RecordSearchHistory
 import com.lindenlabs.photofeed.android.screens.search.domain.SearchScreenInteractor
 import com.lindenlabs.photofeed.android.screens.search.presentation.SearchScreenContract.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -15,8 +16,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 internal class SearchViewModel @Inject constructor(
-    val getSearchScreenUi: SearchScreenInteractor,
-    private val viewMapper: SearchViewMapper
+    private val getSearchResultViewEntities: GetSearchResultViewEntities,
+    private val recordSearchHistory: RecordSearchHistory
 ) : ViewModel() {
     private val job = SupervisorJob()
     private val ioScope = CoroutineScope(Dispatchers.IO + job)
@@ -26,8 +27,8 @@ internal class SearchViewModel @Inject constructor(
     fun search(query: String) {
         if (query.isNotEmpty()) {
             viewModelScope.launch(ioScope.coroutineContext) {
-                runCatching { getSearchScreenUi(query) }
-                    .mapCatching { viewMapper.map(it) }
+                recordSearchHistory(query)
+                runCatching { getSearchResultViewEntities(query) }
                     .onSuccess {
                         Log.e("SVM", "Testing success $it")
                         mutableViewState.value = ViewState.Initial(query, results = it, true) }
