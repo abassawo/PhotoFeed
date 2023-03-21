@@ -25,11 +25,15 @@ internal class FeedViewModel @Inject constructor(val getSearchResultViewEntities
       refresh()
     }
 
-    fun refresh() {
+    private fun refresh() {
         val queryHistoryItems = recordSearchHistory.getHistory()
         viewModelScope.launch(ioScope.coroutineContext) {
             val viewEntities = queryHistoryItems.toViewEntities()
-            viewState.value = FeedScreenContract.ViewState.Content(viewEntities)
+            viewState.value = if(viewEntities.isEmpty()) {
+                FeedScreenContract.ViewState.EmptyState
+            } else {
+                FeedScreenContract.ViewState.Content(viewEntities)
+            }
         }
     }
 
