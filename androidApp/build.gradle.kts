@@ -47,6 +47,7 @@ android {
 dependencies {
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     val composeVersion = "1.3.1"
+    implementation(project(":shared"))
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
