@@ -1,6 +1,6 @@
 package com.lindenlabs.photofeed.android.screens.search.domain
 
-import com.lindenlabs.photofeed.android.data.RawPhotoItem
+import com.lindenlabs.shared.data.RawPhotoItem
 
 /**
  * https://www.flickr.com/services/api/misc.urls.html

@@ -1,7 +1,7 @@
 package com.lindenlabs.photofeed.android
 
-import com.lindenlabs.photofeed.android.data.AppDataSource
-import com.lindenlabs.photofeed.android.data.RawPhotoItem
+import com.lindenlabs.shared.data.AppDataSource
+import com.lindenlabs.shared.data.RawPhotoItem
 
 /**
  * Just for testing

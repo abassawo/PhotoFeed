@@ -5,6 +5,7 @@
 
     <application
         android:allowBackup="false"
+        android:usesCleartextTraffic="true"
         android:supportsRtl="true"
         android:name=".PhotoFeedApplication"
         android:theme="@style/AppTheme">

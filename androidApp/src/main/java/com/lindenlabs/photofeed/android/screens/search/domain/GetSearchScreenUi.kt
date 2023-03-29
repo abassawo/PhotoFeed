@@ -1,6 +1,6 @@
 package com.lindenlabs.photofeed.android.screens.search.domain
 
-import com.lindenlabs.photofeed.android.data.AppDataSource
+import com.lindenlabs.shared.data.AppDataSource
 import javax.inject.Inject
 
 interface SearchScreenInteractor {
