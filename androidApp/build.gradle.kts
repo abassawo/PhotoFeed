@@ -14,7 +14,7 @@ android {
     compileSdk = 33
     defaultConfig {
         applicationId = "com.lindenlabs.photofeed.android"
-        minSdk = 24
+        minSdk = 31
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -47,6 +47,7 @@ android {
 dependencies {
     implementation("androidx.coordinatorlayout:coordinatorlayout:1.2.0")
     val composeVersion = "1.3.1"
+    implementation(project(":shared"))
     implementation("androidx.compose.ui:ui:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling:$composeVersion")
     implementation("androidx.compose.ui:ui-tooling-preview:$composeVersion")
@@ -58,6 +59,7 @@ dependencies {
     implementation("androidx.hilt:hilt-navigation-compose:1.0.0")
     val navigation = "androidx.navigation:navigation-compose:2.5.2"
     implementation(navigation)
+    implementation("io.ktor:ktor-client-android:2.2.4")
     kapt("com.google.dagger:hilt-android-compiler:2.44")
     implementation("com.squareup.okhttp3:logging-interceptor:3.9.0")
     implementation("com.squareup.retrofit2:retrofit:2.1.0")
