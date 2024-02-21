@@ -16,6 +16,8 @@ data class BottomNavigationItem(
 sealed class Screen(val title: String) {
     object FeedScreen : Screen("saved")
     object SearchScreen : Screen("search")
+
+    data class Detail(val server: String, val photoId: String) : Screen("detail")
 }
 
 val bottomNavigationItems = listOf(

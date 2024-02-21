@@ -14,6 +14,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.lindenlabs.photofeed.android.navigation.AppNavigator
 import com.lindenlabs.photofeed.android.screens.detail.DetailScreen
 import com.lindenlabs.photofeed.android.screens.feed.presentation.views.FeedScaffold
 import com.lindenlabs.photofeed.android.screens.search.presentation.views.SearchScaffold
@@ -30,6 +31,7 @@ class MainActivity : ComponentActivity() {
 
         setContent {
             val navController = rememberNavController()
+            val appNavigator = AppNavigator(navController)
             Scaffold(
                 bottomBar = { BottomNavigation(navController = navController) },
                 contentWindowInsets = WindowInsets(0, 0, 0, 0),
@@ -44,19 +46,22 @@ class MainActivity : ComponentActivity() {
                         SearchScaffold(navController = navController, viewModel)
                     }
                     composable(
-                        "detail/{imageId}",
-                        arguments = listOf(navArgument("imageId") { type = NavType.StringType })
+                        "detail/{server}/{imageId}",
+                        arguments = listOf(
+                            navArgument("server") {
+                                type = NavType.StringType
+                            },
+                            navArgument("imageId") { type = NavType.StringType })
                     ) { backStackEntry ->
-                        backStackEntry.arguments?.getString("imageId")?.let { imageId ->
-                            DetailScreen(imageId = imageId)
-                        }
+                        val server = backStackEntry.arguments?.getString("server") ?: ""
+                        val imageId = backStackEntry.arguments?.getString("imageId") ?: ""
+                        DetailScreen(appNavigator , "https://live.staticflickr.com/${server}/${imageId}.jpg")
                     }
                 }
             }
         }
     }
 }
-
 
 
 @Preview

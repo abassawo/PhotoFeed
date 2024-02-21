@@ -1,5 +1,6 @@
 package com.lindenlabs.photofeed.android.screens.search.presentation.views
 
+import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -30,7 +31,7 @@ fun VerticalResults(results: List<ImageResultViewEntity>, navController: NavCont
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable {
-                        val route = "detail/${viewEntity.photo.rawPhotoItem.id}"
+                        val route = "detail/${photo.server}/${photo.id}"
                         navController.navigate(route)
                     }
             )
@@ -41,19 +42,24 @@ fun VerticalResults(results: List<ImageResultViewEntity>, navController: NavCont
 
 @Composable
 fun HorizontalResults(results: List<ImageResultViewEntity>, navController: NavController) {
-    LazyRow  {
+    LazyRow {
         items(results) { viewEntity ->
             Column {
-                AsyncImage(
-                    model = viewEntity.photo.url,
-                    contentDescription =viewEntity.photo.rawPhotoItem.title,
-                    modifier = Modifier
-                        .height(100.dp)
-                        .clickable {
-                            val route = "detail/${viewEntity.photo.rawPhotoItem.id}"
-                            navController.navigate(route)
-                        }
-                )
+                with(viewEntity.photo) {
+                    AsyncImage(
+                        model = url,
+                        contentDescription = rawPhotoItem.title,
+                        modifier = Modifier
+                            .height(100.dp)
+                            .clickable {
+                                Log.d("Result URL", url)
+                                Log.d("Result ID", rawPhotoItem.id)
+                                Log.d("Result Server", rawPhotoItem.server)
+                                val route = "detail/${rawPhotoItem.server}/${rawPhotoItem.id}"
+                                navController.navigate(route)
+                            }
+                    )
+                }
             }
         }
     }
