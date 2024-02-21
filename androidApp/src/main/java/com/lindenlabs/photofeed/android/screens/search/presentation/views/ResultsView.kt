@@ -30,7 +30,7 @@ fun VerticalResults(results: List<ImageResultViewEntity>, navController: NavCont
                 modifier = Modifier
                     .fillMaxWidth()
                     .clickable {
-                        val route = ""
+                        val route = "detail/${viewEntity.photo.rawPhotoItem.id}"
                         navController.navigate(route)
                     }
             )
@@ -50,7 +50,7 @@ fun HorizontalResults(results: List<ImageResultViewEntity>, navController: NavCo
                     modifier = Modifier
                         .height(100.dp)
                         .clickable {
-                            val route = ""
+                            val route = "detail/${viewEntity.photo.rawPhotoItem.id}"
                             navController.navigate(route)
                         }
                 )
