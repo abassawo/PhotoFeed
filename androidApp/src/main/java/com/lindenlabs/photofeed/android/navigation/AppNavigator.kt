@@ -18,7 +18,6 @@ class AppNavigator(private val navigator: NavHostController) {
                 navigator.navigate(route)
             }
         }
-
     }
 
     fun navigateUp() = navigator.navigateUp()

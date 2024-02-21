@@ -1,5 +1,6 @@
 package com.lindenlabs.photofeed.android.screens.search.domain
 
+import com.lindenlabs.photofeed.android.utils.ImageMemo
 import com.lindenlabs.shared.data.AppDataSource
 import javax.inject.Inject
 
@@ -12,8 +13,10 @@ class GetSearchScreenUi @Inject constructor(private val appDataSource: AppDataSo
 
     override suspend fun invoke(query: String): List<DomainPhotoItem> {
         return appDataSource.getImages(query)
-            .map {
-                DomainPhotoItem(it)
+            .map { DomainPhotoItem(it) }.also {
+                for(image in it) {
+                    ImageMemo.storeImage(image)
+                }
             }
     }
 }

@@ -7,31 +7,43 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import coil.compose.AsyncImage
 import com.lindenlabs.photofeed.android.navigation.AppNavigator
+import com.lindenlabs.photofeed.android.utils.ImageMemo
 
 @Composable
-fun TopAppBar(appNavigator: AppNavigator) {
-        Row(Modifier.fillMaxWidth().padding(16.dp)) {
+fun TopAppBar(title: String, appNavigator: AppNavigator) {
+        Row(
+            Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .padding(16.dp)) {
             Icon(Icons.Default.ArrowBack, contentDescription = "", Modifier.clickable {
                 appNavigator.navigateUp()
             })
+            Text(text = title)
         }
 }
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun DetailScreen(appNavigator: AppNavigator, url: String) {
-    Scaffold(topBar =  { TopAppBar(appNavigator) }, modifier = Modifier.fillMaxSize() ) { padding ->
-        Box(Modifier.fillMaxSize().padding(padding), contentAlignment = Alignment.Center) {
+fun DetailScreen(appNavigator: AppNavigator, id: String, url: String) {
+    val photo = ImageMemo.getImage(id)
+    Scaffold(topBar =  { TopAppBar(photo?.rawPhotoItem?.title ?: "", appNavigator) }, modifier = Modifier.fillMaxSize() ) { padding ->
+        Box(
+            Modifier
+                .fillMaxSize()
+                .padding(padding), contentAlignment = Alignment.Center) {
             AsyncImage(model = url, contentDescription = "")
         }
     }

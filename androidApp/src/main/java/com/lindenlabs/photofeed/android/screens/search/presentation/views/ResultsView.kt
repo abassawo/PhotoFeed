@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.lazy.LazyRow
@@ -29,9 +30,9 @@ fun VerticalResults(results: List<ImageResultViewEntity>, navController: NavCont
                 model = viewEntity.photo.url,
                 contentDescription = photo.title,
                 modifier = Modifier
-                    .fillMaxWidth()
+                    .fillMaxSize()
                     .clickable {
-                        val route = "detail/${photo.server}/${photo.id}"
+                        val route = "detail/${photo.server}/${photo.secret}/${photo.id}"
                         navController.navigate(route)
                     }
             )
@@ -55,7 +56,7 @@ fun HorizontalResults(results: List<ImageResultViewEntity>, navController: NavCo
                                 Log.d("Result URL", url)
                                 Log.d("Result ID", rawPhotoItem.id)
                                 Log.d("Result Server", rawPhotoItem.server)
-                                val route = "detail/${rawPhotoItem.server}/${rawPhotoItem.id}"
+                                val route = "detail/${rawPhotoItem.server}/${rawPhotoItem.secret}/${rawPhotoItem.id}"
                                 navController.navigate(route)
                             }
                     )

@@ -20,6 +20,7 @@ import com.lindenlabs.photofeed.android.screens.feed.presentation.views.FeedScaf
 import com.lindenlabs.photofeed.android.screens.search.presentation.views.SearchScaffold
 import com.lindenlabs.photofeed.android.screens.search.presentation.SearchViewModel
 import com.lindenlabs.photofeed.android.ui.components.BottomNavigation
+import com.lindenlabs.photofeed.android.utils.ImageMemo
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -46,16 +47,25 @@ class MainActivity : ComponentActivity() {
                         SearchScaffold(navController = navController, viewModel)
                     }
                     composable(
-                        "detail/{server}/{imageId}",
+                        "detail/{server}/{secret}/{imageId}",
                         arguments = listOf(
                             navArgument("server") {
+                                type = NavType.StringType
+                            },
+                            navArgument("secret") {
                                 type = NavType.StringType
                             },
                             navArgument("imageId") { type = NavType.StringType })
                     ) { backStackEntry ->
                         val server = backStackEntry.arguments?.getString("server") ?: ""
+                        val secret = backStackEntry.arguments?.getString("secret") ?: ""
                         val imageId = backStackEntry.arguments?.getString("imageId") ?: ""
-                        DetailScreen(appNavigator , "https://live.staticflickr.com/${server}/${imageId}.jpg")
+//                        val title = ImageMemo.getImage(imageId) ?: ""
+                        DetailScreen(
+                            appNavigator,
+                            imageId,
+                            "https://live.staticflickr.com/${server}/${imageId}_$secret.jpg"
+                        )
                     }
                 }
             }
