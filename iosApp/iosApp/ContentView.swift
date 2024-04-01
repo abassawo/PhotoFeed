@@ -17,6 +17,7 @@ struct ContentView: View {
        KoinModuleKt.doInitKoin()
        viewModel = SearchViewModel.init()
     }
+    
     var body: some View {
         TabScreen()
                 .ignoresSafeArea(.keyboard) // Compose has own keyboard handler
@@ -24,18 +25,25 @@ struct ContentView: View {
 }
 
 struct TabScreen : View {
-
+    
     var body: some View {
-        TabView {
-            SearchTab()
-                .badge(1)
-                .tabItem {
-                    Label("Search", systemImage: "tray.and.arrow.down.fill")
-               }
-            Fee
+        NavigationView {
+            
+            TabView {
+                SearchTab()
+                    .badge(1)
+                    .tabItem {
+                        Label("Search", systemImage: "tray.and.arrow.down.fill")
+                    }.navigationTitle("Photo Feed")
+                FeedTab()
+                    .badge(2)
+                    .tabItem {
+                        Label("History", systemImage: "tray.and.arrow.down.fill")
+                    }
+                    .navigationTitle("Photo Feed")
+            }
+        }.navigationTitle("Photo Feed")
         }
-    }
+   
 }
-
-
 

@@ -12,6 +12,7 @@
 		0899AF372BBB66BF00413D0C /* SearchViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899AF362BBB66BF00413D0C /* SearchViewModel.swift */; };
 		0899AF392BBB670900413D0C /* FeedViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899AF382BBB670900413D0C /* FeedViewModel.swift */; };
 		0899AF3B2BBB69C400413D0C /* SearchTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899AF3A2BBB69C400413D0C /* SearchTab.swift */; };
+		0899AF3D2BBB6D0D00413D0C /* FeedTab.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0899AF3C2BBB6D0D00413D0C /* FeedTab.swift */; };
 		2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2152FB032600AC8F00CF470E /* iOSApp.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
 /* End PBXBuildFile section */
@@ -22,6 +23,7 @@
 		0899AF362BBB66BF00413D0C /* SearchViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewModel.swift; sourceTree = "<group>"; };
 		0899AF382BBB670900413D0C /* FeedViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedViewModel.swift; sourceTree = "<group>"; };
 		0899AF3A2BBB69C400413D0C /* SearchTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchTab.swift; sourceTree = "<group>"; };
+		0899AF3C2BBB6D0D00413D0C /* FeedTab.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeedTab.swift; sourceTree = "<group>"; };
 		2152FB032600AC8F00CF470E /* iOSApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iOSApp.swift; sourceTree = "<group>"; };
 		7555FF7B242A565900829871 /* PhotoFeed.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoFeed.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -84,6 +86,7 @@
 				0899AF362BBB66BF00413D0C /* SearchViewModel.swift */,
 				0899AF382BBB670900413D0C /* FeedViewModel.swift */,
 				0899AF3A2BBB69C400413D0C /* SearchTab.swift */,
+				0899AF3C2BBB6D0D00413D0C /* FeedTab.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -197,6 +200,7 @@
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				0899AF392BBB670900413D0C /* FeedViewModel.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
+				0899AF3D2BBB6D0D00413D0C /* FeedTab.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
