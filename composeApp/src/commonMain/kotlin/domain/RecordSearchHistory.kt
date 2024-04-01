@@ -1,6 +1,4 @@
-package com.lindenlabs.photofeed.android.screens.search.domain
-
-import domain.PreferenceUtil
+package domain
 
 
 class RecordSearchHistory (private val sharedPreferences: PreferenceUtil) {

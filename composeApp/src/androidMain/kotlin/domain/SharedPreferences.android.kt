@@ -13,10 +13,9 @@ actual fun Scope.makeSharedPreferences(): PreferenceUtil {
 actual class PreferenceUtil (val sharedPreferences: SharedPreferences) {
 
     actual fun put(key: String, value: Set<String>) {
-        val history = getHistory() + key
         sharedPreferences
             .edit()
-            .putStringSet("history", history)
+            .putStringSet("history",  getHistory() + value) // add previous items with it
             .apply()
     }
 

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.androidApplication)
     alias(libs.plugins.jetbrainsCompose)
     kotlin("plugin.serialization").version("1.9.23")
+    id("com.squareup.sqldelight").version("1.5.5")
 //    id("com.rickclephas.kmp.nativecoroutines") version "0.11.1"
 }
 
@@ -54,6 +55,10 @@ kotlin {
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
+            implementation("com.squareup.sqldelight:runtime:$sqlDelightVersion")
+            implementation("com.squareup.sqldelight:coroutines-extensions:$sqlDelightVersion")
+
+
             implementation("io.insert-koin:koin-core:$koinVersion")
 //            api("io.insert-koin:koin-core:$koinVersion")
             api("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.6.2")
@@ -73,6 +78,9 @@ kotlin {
 
             implementation("io.coil-kt.coil3:coil-compose:3.0.0-alpha03")
             implementation("io.coil-kt.coil3:coil-network-ktor:3.0.0-alpha03")
+        }
+        iosMain.dependencies {
+
         }
     }
 }
@@ -115,9 +123,9 @@ dependencies {
     implementation(libs.androidx.navigation.runtime.ktx)
 }
 
-//sqldelight {
-//    database("AppDatabase") {
-//        packageName = "com.lindenlabs.photofeed.db"
-//        sourceFolders = listOf("sqldelight")
-//    }
-//}
+sqldelight {
+    database("AppDatabase") {
+        packageName = "com.lindenlabs.photofeed.db"
+        sourceFolders = listOf("sqldelight")
+    }
+}

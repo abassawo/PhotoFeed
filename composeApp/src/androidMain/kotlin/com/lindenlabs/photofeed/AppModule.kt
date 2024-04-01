@@ -1,7 +1,7 @@
 package com.lindenlabs.photofeed
 
 import com.lindenlabs.photofeed.android.screens.search.domain.GetSearchScreenUi
-import com.lindenlabs.photofeed.android.screens.search.domain.RecordSearchHistory
+import domain.RecordSearchHistory
 import com.lindenlabs.photofeed.screens.saved.FeedViewModel
 import com.lindenlabs.photofeed.screens.search.SearchViewModel
 import com.lindenlabs.shared.data.AppRepository
@@ -13,24 +13,20 @@ import org.koin.dsl.module
 
 
 val viewModelModule = module {
-//    single { RecordSearchHistory(makeSharedPreferences()) }
-//    single { SearchViewMapper() }
-//    single { AppRepository() }
-//    single { GetSearchScreenUi(get()) }
-//    single { GetSearchResultViewEntities(get(), get()) }
+    single { makeSharedPreferences() }
+    single { RecordSearchHistory(get()) }
+    single { GetSearchResultViewEntities(
+        SearchViewMapper(),
+        GetSearchScreenUi(AppRepository())
+    ) }
     viewModel {
         FeedViewModel(
-        GetSearchResultViewEntities(
-            SearchViewMapper(),
-            GetSearchScreenUi(AppRepository())
-        ), RecordSearchHistory(makeSharedPreferences()))
+            get(), get()
+        )
     }
     viewModel {
         SearchViewModel(
-            GetSearchResultViewEntities(
-                SearchViewMapper(),
-                GetSearchScreenUi(AppRepository())
-            ), RecordSearchHistory(makeSharedPreferences())
+            get(), get()
         )
     }
 }

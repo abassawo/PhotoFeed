@@ -2,7 +2,7 @@
 //
 //import androidx.compose.runtime.mutableStateOf
 //import androidx.lifecycle.ViewModel
-//import com.lindenlabs.photofeed.android.screens.search.domain.RecordSearchHistory
+//import domain.RecordSearchHistory
 //import domain.GetSearchResultViewEntities
 //import kotlinx.coroutines.CoroutineScope
 //import kotlinx.coroutines.Dispatchers

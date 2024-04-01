@@ -2,6 +2,7 @@ package com.lindenlabs.photofeed.navigation
 
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AddCircle
+import androidx.compose.material.icons.filled.Favorite
 import androidx.compose.material.icons.filled.Search
 import androidx.compose.ui.graphics.vector.ImageVector
 
@@ -26,7 +27,7 @@ val bottomNavigationItems = listOf(
     ),
     BottomNavigationItem(
         Screen.FeedScreen.title,
-        Icons.Default.AddCircle,
+        Icons.Default.Favorite,
         ""
     )
 )

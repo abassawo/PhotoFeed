@@ -1,15 +1,13 @@
 package presentation
 
 import androidx.compose.runtime.mutableStateOf
-import com.lindenlabs.photofeed.android.screens.search.domain.RecordSearchHistory
+import domain.RecordSearchHistory
 import domain.GetSearchResultViewEntities
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.IO
 import kotlinx.coroutines.SupervisorJob
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 

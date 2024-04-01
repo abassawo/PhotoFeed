@@ -3,7 +3,7 @@ package com.lindenlabs.photofeed.screens.search
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.lindenlabs.photofeed.android.screens.search.domain.RecordSearchHistory
+import domain.RecordSearchHistory
 import domain.GetSearchResultViewEntities
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers

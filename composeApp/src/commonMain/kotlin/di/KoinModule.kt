@@ -7,7 +7,6 @@ import org.koin.dsl.module
 
 private val utilityModule = module {
     factory { getDispatcherProvider() }
-//    single { DogifyDatabase(createDriver("dogify.db")) }
 }
 
 private val apiModule = module {
