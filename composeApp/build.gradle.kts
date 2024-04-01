@@ -80,7 +80,8 @@ kotlin {
             implementation("io.coil-kt.coil3:coil-network-ktor:3.0.0-alpha03")
         }
         iosMain.dependencies {
-
+            implementation("io.ktor:ktor-client-ios:$ktorVersion")
+            implementation("com.squareup.sqldelight:native-driver:$sqlDelightVersion")
         }
     }
 }

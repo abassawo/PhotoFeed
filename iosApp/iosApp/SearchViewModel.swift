@@ -9,13 +9,29 @@
 import Foundation
 import Combine
 import ComposeApp
-//import KMPNativeCoroutinesRxSwift
-//import RxSwift
 
 class SearchViewModel : ObservableObject {
-//    private let appDataSource = AppRepository.init()
+    @Published var results: [ImageResultViewEntity]
+    private let appDataSource = AppRepository.init()
+    
+    
     
     init() {
+        self.results = []
 //        createObservable()
+    
+        
+    }
+    
+    private func loadResults(query: String) {
+        appDataSource.getImages(query: query) { data, error in
+            print("Result")
+            self.results = self.makeViewEntities(rawResults: data ?? [])
+        }
+        
+    }
+    
+    private func makeViewEntities(rawResults: [RawPhotoItem]) -> [ImageResultViewEntity] {
+        return []
     }
 }
