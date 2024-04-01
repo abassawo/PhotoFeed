@@ -11,9 +11,29 @@ struct ComposeView: UIViewControllerRepresentable {
 }
 
 struct ContentView: View {
+   @ObservedObject private var viewModel: SearchViewModel
+
+    init() {
+       KoinModuleKt.doInitKoin()
+       viewModel = SearchViewModel.init()
+    }
     var body: some View {
-        ComposeView()
+        TabScreen()
                 .ignoresSafeArea(.keyboard) // Compose has own keyboard handler
+    }
+}
+
+struct TabScreen : View {
+
+    var body: some View {
+        TabView {
+            SearchTab()
+                .badge(1)
+                .tabItem {
+                    Label("Search", systemImage: "tray.and.arrow.down.fill")
+               }
+            Fee
+        }
     }
 }
 
