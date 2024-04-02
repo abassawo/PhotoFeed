@@ -20,8 +20,12 @@ class FeedViewModel : ObservableObject {
             queries.forEach { query in
                 getSearchResultViewEntities.invoke(query: query) { data, error in
                     DispatchQueue.main.async {
-                        self.results[query] = data
-                        self.results = self.results
+                        if(error != nil) {
+                            print("Error " + error!.localizedDescription)
+                        } else {
+                            self.results[query] = data
+                            self.results = self.results
+                        }
                     }
                 }
             }

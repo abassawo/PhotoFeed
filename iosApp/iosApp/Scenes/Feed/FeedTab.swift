@@ -26,7 +26,7 @@ struct FeedTab : View {
                                     viewModel.loadResults(queries: recentSearches)
                                 }
                             
-                            ScrollView {
+                            ScrollView(.horizontal) {
                                 LazyHStack {
                                     ForEach(viewModel.results[recentSearches[index]] ?? [], id: \.id) { item in
                                           // content
