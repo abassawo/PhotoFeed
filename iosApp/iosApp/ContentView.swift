@@ -14,35 +14,41 @@ struct ContentView: View {
 
     var body: some View {
         TabScreen()
-                .ignoresSafeArea(.keyboard) // Compose has own keyboard handler
+            .ignoresSafeArea(.keyboard) // Compose has own keyboard handler
     }
 }
 
 struct TabScreen : View {
     @ObservedObject private var viewModel: SearchViewModel
-
-     init() {
+    
+    init() {
         KoinModuleKt.doInitKoin()
         viewModel = SearchViewModel.init()
-     }
+    }
     
     var body: some View {
         NavigationView {
-            
             TabView {
                 SearchTab()
                     .tabItem {
                         Label("Search", systemImage: "magnifyingglass")
-                    }.navigationTitle("Photo Feed")
+                    }
                 FeedTab()
                     .tabItem {
                         Label("History", systemImage: "tray.and.arrow.down.fill")
                     }
-                    .navigationTitle("Photo Feed")
-            }
+            }.navigationTitle("Photo Feed")
+                .navigationBarTitleDisplayMode(.inline)
         }
-        .navigationTitle("Photo Feed")
-        }
-   
+    }
 }
 
+@ToolbarContentBuilder
+private func mainToolbar() -> some ToolbarContent {
+    ToolbarItem(placement: .principal) {
+        Text("Photo Feed")
+            .font(.title3)
+            .frame(maxHeight: 100)
+    }
+}
+        
