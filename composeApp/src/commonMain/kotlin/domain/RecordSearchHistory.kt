@@ -9,6 +9,6 @@ class RecordSearchHistory (private val sharedPreferences: PreferenceUtil) {
     }
 
     fun getHistory(): Set<String> =
-        sharedPreferences.get("history") ?: emptySet()
+        sharedPreferences.get("history")
 
 }
