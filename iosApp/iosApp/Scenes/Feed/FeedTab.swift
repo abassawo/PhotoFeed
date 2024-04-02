@@ -5,7 +5,8 @@ import ComposeApp
 
 struct FeedTab : View {
     var images: [ImageResultViewEntity] = []
-
+    let viewModel = FeedViewModel()
+    
     var body: some View {
         let columns = [
                     GridItem(.flexible(minimum: 128, maximum: 256), spacing: 16),
@@ -15,6 +16,8 @@ struct FeedTab : View {
                  LazyVGrid(columns: columns, spacing: 16){
 
                  }.padding(.horizontal, 16)
-             }
+        }.onAppear {
+            
+        }
     }
 }
