@@ -18,7 +18,9 @@ struct SearchTab : View {
                     }, label: {
                         Text("Search")
                     })
-                }.padding(16)
+                }
+                .padding(.horizontal)
+                
                 SearchResultsView(results: searchViewModel.results)
             }
     }

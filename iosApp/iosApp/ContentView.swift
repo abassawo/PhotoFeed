@@ -14,7 +14,6 @@ struct ContentView: View {
 
     var body: some View {
         TabScreen()
-            .ignoresSafeArea(.keyboard) // Compose has own keyboard handler
     }
 }
 
@@ -37,8 +36,10 @@ struct TabScreen : View {
                     .tabItem {
                         Label("History", systemImage: "tray.and.arrow.down.fill")
                     }
-            }.navigationTitle("Photo Feed")
-                .navigationBarTitleDisplayMode(.inline)
+            }
+            .navigationTitle("Photo Feed")
+            .navigationBarTitleDisplayMode(.inline)
+            
         }
     }
 }
