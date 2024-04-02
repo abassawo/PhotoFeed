@@ -10,7 +10,6 @@ class SearchViewModel : ObservableObject {
     private let getSearchResultViewEntities = GetSearchResultViewEntities(viewMapper: SearchViewMapper(), getSearchScreenUi: GetSearchScreenUi(appDataSource: AppRepository.init()))
     
     func loadResults(query: String) {
-       
         getSearchResultViewEntities.invoke(query: query) { data, error in
             DispatchQueue.main.async {
                 self.results = data ?? []
