@@ -1,29 +1,20 @@
-//
-//  FeedTab.swift
-//  iosApp
-//
-//  Created by Abass Bayo on 4/1/24.
-//  Copyright © 2024 orgName. All rights reserved.
-//
 
 import Foundation
 import SwiftUI
+import ComposeApp
 
 struct FeedTab : View {
-   
+    var images: [ImageResultViewEntity] = []
 
     var body: some View {
+        let columns = [
+                    GridItem(.flexible(minimum: 128, maximum: 256), spacing: 16),
+                    GridItem(.flexible(minimum: 128, maximum: 256), spacing: 16)
+                ]
+        ScrollView{
+                 LazyVGrid(columns: columns, spacing: 16){
 
-        VStack(
-               alignment: .leading,
-               spacing: 10
-           ) {
-               ForEach(
-                   1...10,
-                   id: \.self
-               ) {
-                   Text("Item \($0)")
-               }
-           }
+                 }.padding(.horizontal, 16)
+             }
     }
 }

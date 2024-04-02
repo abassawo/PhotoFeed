@@ -11,27 +11,23 @@ import Combine
 import ComposeApp
 
 class SearchViewModel : ObservableObject {
+    @Published var query: String = ""
     @Published var results: [ImageResultViewEntity]
-    private let appDataSource = AppRepository.init()
+    
+    private let getSearchResultViewEntities = GetSearchResultViewEntities(viewMapper: SearchViewMapper(), getSearchScreenUi: GetSearchScreenUi(appDataSource: AppRepository.init()))
     
     
     
     init() {
         self.results = []
-//        createObservable()
-    
-        
     }
     
-    private func loadResults(query: String) {
-        appDataSource.getImages(query: query) { data, error in
-            print("Result")
-            self.results = self.makeViewEntities(rawResults: data ?? [])
+    func loadResults(query: String) {
+        getSearchResultViewEntities.invoke(query: query) { data, error in
+            DispatchQueue.main.async {
+                self.results = data ?? []
+            }
         }
         
-    }
-    
-    private func makeViewEntities(rawResults: [RawPhotoItem]) -> [ImageResultViewEntity] {
-        return []
     }
 }

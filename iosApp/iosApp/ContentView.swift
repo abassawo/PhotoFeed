@@ -11,13 +11,7 @@ struct ComposeView: UIViewControllerRepresentable {
 }
 
 struct ContentView: View {
-   @ObservedObject private var viewModel: SearchViewModel
 
-    init() {
-       KoinModuleKt.doInitKoin()
-       viewModel = SearchViewModel.init()
-    }
-    
     var body: some View {
         TabScreen()
                 .ignoresSafeArea(.keyboard) // Compose has own keyboard handler
@@ -25,24 +19,29 @@ struct ContentView: View {
 }
 
 struct TabScreen : View {
+    @ObservedObject private var viewModel: SearchViewModel
+
+     init() {
+        KoinModuleKt.doInitKoin()
+        viewModel = SearchViewModel.init()
+     }
     
     var body: some View {
         NavigationView {
             
             TabView {
                 SearchTab()
-                    .badge(1)
                     .tabItem {
-                        Label("Search", systemImage: "tray.and.arrow.down.fill")
+                        Label("Search", systemImage: "magnifyingglass")
                     }.navigationTitle("Photo Feed")
                 FeedTab()
-                    .badge(2)
                     .tabItem {
                         Label("History", systemImage: "tray.and.arrow.down.fill")
                     }
                     .navigationTitle("Photo Feed")
             }
-        }.navigationTitle("Photo Feed")
+        }
+        .navigationTitle("Photo Feed")
         }
    
 }
