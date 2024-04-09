@@ -21,7 +21,16 @@ struct SearchTab : View {
                 }
                 .padding(.horizontal)
                 
-                SearchResultsView(results: searchViewModel.results)
+                switch searchViewModel.viewState {
+                case .loading:
+                    VStack {
+                        ProgressView()
+                    }
+                case .content(let content):
+                    SearchResultsView(results: content.results)
+                case .error(let string):
+                    Text(string)
+                }
             }
     }
 }
